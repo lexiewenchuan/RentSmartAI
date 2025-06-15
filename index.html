@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RentSmart AI · 智能租房助手</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFFFFF;
+    --bg2: #F7FAF8;
+    --bg3: #EFF5F1;
+    --accent: #22A06B;
+    --accent-dark: #1B7D54;
+    --accent-light: #E3F5ED;
+    --accent-lighter: #F0FAF5;
+    --text: #1A2E1F;
+    --text2: #4A6358;
+    --text3: #7A9489;
+    --border: #E2EBE6;
+    --border2: rgba(34,160,107,0.25);
+    --card: #FFFFFF;
+    --card-hover: #F7FAF8;
+    --shadow-sm: 0 1px 3px rgba(26,46,31,0.06);
+    --shadow-md: 0 4px 20px rgba(26,46,31,0.07);
+    --shadow-lg: 0 12px 40px rgba(26,46,31,0.1);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans SC', 'Sora', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-github {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1.1rem;
+    background: var(--accent-light);
+    border: 1px solid var(--border2);
+    border-radius: 50px;
+    color: var(--accent-dark) !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-github:hover { background: #D0EDDE; transform: translateY(-1px); }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 1.5rem 4rem;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--accent-lighter) 0%, var(--bg) 60%);
+  }
+
+  .hero-dot-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(34,160,107,0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.1rem;
+    background: var(--accent-light);
+    border: 1px solid var(--border2);
+    border-radius: 50px;
+    font-size: 0.78rem;
+    color: var(--accent-dark);
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+    font-family: 'Sora', sans-serif;
+    font-weight: 500;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    position: relative;
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent) 0%, #17B87A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    position: relative;
+    font-size: 1.1rem;
+    color: var(--text2);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    font-weight: 400;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 4rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 4px 16px rgba(34,160,107,0.25);
+  }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(34,160,107,0.35); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--text3); background: var(--bg2); transform: translateY(-2px); }
+
+  /* Screenshots mockup */
+  .hero-screens {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-end;
+    perspective: 800px;
+  }
+  .screen-wrap {
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s;
+    background: var(--bg2);
+  }
+  .screen-wrap:nth-child(1) { transform: rotateY(8deg) scale(0.88); opacity: 0.65; }
+  .screen-wrap:nth-child(2) { transform: scale(1); z-index: 2; }
+  .screen-wrap:nth-child(3) { transform: rotateY(-8deg) scale(0.88); opacity: 0.65; }
+  .screen-wrap img { display: block; width: 160px; }
+
+  .screen-placeholder {
+    width: 160px;
+    height: 320px;
+    background: var(--bg3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--text3);
+    font-size: 0.75rem;
+  }
+  .screen-placeholder svg { opacity: 0.3; }
+
+  /* ── Section ── */
+  section { position: relative; z-index: 1; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    color: var(--text2);
+    font-size: 1rem;
+    max-width: 500px;
+    line-height: 1.8;
+  }
+
+  /* ── Problems ── */
+  .problems { padding: 6rem 0; background: var(--bg2); }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .pain-card {
+    background: var(--card);
+    padding: 1.75rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .pain-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .pain-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .pain-icon.red { background: #FEE9E9; color: #D44545; }
+  .pain-icon.amber { background: #FFF4DD; color: #B87A14; }
+  .pain-icon.blue { background: #E4F0FF; color: #2A71C7; }
+  .pain-icon.green { background: var(--accent-light); color: var(--accent); }
+  .pain-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .pain-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.7; }
+
+  /* ── Features ── */
+  .features { padding: 6rem 0; }
+  .features-header { margin-bottom: 3.5rem; }
+  .feature-list { display: flex; flex-direction: column; gap: 1rem; }
+  .feature-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    cursor: default;
+  }
+  .feature-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(34,160,107,0.3);
+    transform: translateX(4px);
+  }
+  .feature-num {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+    flex-shrink: 0;
+  }
+  .feature-content h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+  .feature-content p { font-size: 0.875rem; color: var(--text2); line-height: 1.75; }
+  .feature-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
+  .tag {
+    padding: 0.2rem 0.65rem;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-family: 'Sora', sans-serif;
+    font-weight: 500;
+    background: var(--accent-lighter);
+    color: var(--accent-dark);
+    border: 1px solid rgba(34,160,107,0.12);
+  }
+
+  /* ── Tech stack ── */
+  .tech { padding: 6rem 0; background: var(--bg2); }
+  .tech-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .tech-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.2rem;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .tech-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+  .tech-card .tech-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .tech-card .tech-desc { font-size: 0.78rem; color: var(--text3); }
+  .tech-card .tech-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    font-family: 'Sora', monospace;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    font-weight: 600;
+  }
+
+  /* ── Decisions ── */
+  .decisions { padding: 6rem 0; }
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .decision-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    border-left: 3px solid var(--accent);
+    transition: box-shadow 0.2s;
+  }
+  .decision-card:hover { box-shadow: var(--shadow-md); }
+  .decision-q {
+    font-size: 0.85rem;
+    color: var(--accent-dark);
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .decision-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.8; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 6rem 0;
+    text-align: center;
+    background: var(--bg2);
+  }
+  .cta-box {
+    background: linear-gradient(135deg, var(--accent-lighter) 0%, #E8F7FE 100%);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .cta-box h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .cta-box p { color: var(--text2); margin-bottom: 2rem; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 2.5rem 1.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text3);
+    font-size: 0.82rem;
+  }
+  footer a { color: var(--text3); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem; }
+    .nav-links { display: none; }
+    .hero-screens .screen-wrap:not(:nth-child(2)) { display: none; }
+    .tech-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero h1 { font-size: 2.5rem; }
+  }
+
+  .hero-badge, .hero h1, .hero-sub, .hero-actions, .hero-screens {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero h1 { animation-delay: 0.1s; }
+  .hero-sub { animation-delay: 0.2s; }
+  .hero-actions { animation-delay: 0.3s; }
+  .hero-screens { animation-delay: 0.45s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">RentSmart AI</span>
+  <div class="nav-links">
+    <a href="#features">功能</a>
+    <a href="#tech">技术</a>
+    <a href="#decisions">设计理念</a>
+    <a href="https://github.com/gin300/RentSmartAI" class="nav-github">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-dot-bg"></div>
+  <div class="hero-badge">React Native · DeepSeek · GLM-4V · RAG</div>
+  <h1>租房，<br>有 <span>AI 兜底</span></h1>
+  <p class="hero-sub">把「刷平台、记条件、算通勤、怕踩坑」这些事，交给 AI 助手。RentSmart AI 用智能决策流程，帮你把精力留给真正值得关注的房子。</p>
+  <div class="hero-actions">
+    <a href="https://github.com/gin300/RentSmartAI" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      查看源码
+    </a>
+    <a href="#features" class="btn-secondary">了解功能 →</a>
+  </div>
+
+  <div class="hero-screens">
+    <div class="screen-wrap">
+      <img src="https://raw.githubusercontent.com/gin300/RentSmartAI/main/screenshots/home.jpg" alt="首页" onerror="this.parentNode.innerHTML='<div class=\'screen-placeholder\'><svg width=32 height=32 viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'5\' y=\'2\' width=\'14\' height=\'20\' rx=\'2\'/><line x1=\'9\' y1=\'7\' x2=\'15\' y2=\'7\'/><line x1=\'9\' y1=\'11\' x2=\'15\' y2=\'11\'/><line x1=\'9\' y1=\'15\' x2=\'12\' y2=\'15\'/></svg>首页</div>';" />
+    </div>
+    <div class="screen-wrap">
+      <img src="https://raw.githubusercontent.com/gin300/RentSmartAI/main/screenshots/chat.jpg" alt="AI 助手" onerror="this.parentNode.innerHTML='<div class=\'screen-placeholder\'><svg width=32 height=32 viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'5\' y=\'2\' width=\'14\' height=\'20\' rx=\'2\'/><line x1=\'9\' y1=\'7\' x2=\'15\' y2=\'7\'/><line x1=\'9\' y1=\'11\' x2=\'15\' y2=\'11\'/></svg>AI 助手</div>';" />
+    </div>
+    <div class="screen-wrap">
+      <img src="https://raw.githubusercontent.com/gin300/RentSmartAI/main/screenshots/detail.jpg" alt="详情" onerror="this.parentNode.innerHTML='<div class=\'screen-placeholder\'><svg width=32 height=32 viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'5\' y=\'2\' width=\'14\' height=\'20\' rx=\'2\'/><line x1=\'9\' y1=\'7\' x2=\'15\' y2=\'7\'/><line x1=\'9\' y1=\'11\' x2=\'15\' y2=\'11\'/><line x1=\'9\' y1=\'15\' x2=\'12\' y2=\'15\'/></svg>详情</div>';" />
+    </div>
+  </div>
+</section>
+
+<section class="problems" id="problems">
+  <div class="container">
+    <span class="section-label">痛点</span>
+    <h2 class="section-title">租房的麻烦，<br>不该全靠你自己扛</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon red">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h8"/></svg>
+        </div>
+        <h3>信息过载</h3>
+        <p>多平台来回切换，数百条房源靠手动翻页和记忆，效率极低。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon amber">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg>
+        </div>
+        <h3>决策成本高</h3>
+        <p>价格、通勤、户型无法一次对齐，对比全靠脑记，容易遗漏关键信息。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon red">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>踩坑风险</h3>
+        <p>中介话术、合同陷阱、虚假房源，缺乏专业判断，全靠运气。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon blue">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3>工具割裂</h3>
+        <p>看房、算通勤、查法律分散在不同 App，操作链条太长。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <div class="features-header">
+      <span class="section-label">核心功能</span>
+      <h2 class="section-title">六大能力，<br>全程帮你把关</h2>
+      <p class="section-desc">从搜索到签约，每个环节都有 AI 支撑。</p>
+    </div>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-num">01</div>
+        <div class="feature-content">
+          <h3>多平台聚合 + AI 初筛</h3>
+          <p>一次搜索覆盖贝壳、安居客、链家三大平台，DeepSeek 自动评分与简评，批量过滤不匹配房源。</p>
+          <div class="feature-tags">
+            <span class="tag">贝壳</span><span class="tag">安居客</span><span class="tag">链家</span><span class="tag">DeepSeek</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">02</div>
+        <div class="feature-content">
+          <h3>对话式 AI 找房助手</h3>
+          <p>用自然语言描述需求，助手先确认理解再检索匹配房源。Function Calling Agent 架构，自主调度查房源、算通勤、搜法律等工具。</p>
+          <div class="feature-tags">
+            <span class="tag">自然语言</span><span class="tag">Function Calling</span><span class="tag">Agent</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">03</div>
+        <div class="feature-content">
+          <h3>深度筛查与风险预警</h3>
+          <p>GLM-4V 多模态模型辅助看图分析，检测话术陷阱与虚假信息，自动生成砍价话术。</p>
+          <div class="feature-tags">
+            <span class="tag">GLM-4V</span><span class="tag">多模态</span><span class="tag">风险检测</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">04</div>
+        <div class="feature-content">
+          <h3>房源对比 + 通勤计算</h3>
+          <p>最多 5 套候选房横向 PK，集成高德地图实时通勤规划，价格与距离不再分开看。</p>
+          <div class="feature-tags">
+            <span class="tag">高德地图</span><span class="tag">多维对比</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">05</div>
+        <div class="feature-content">
+          <h3>RAG 法律知识库</h3>
+          <p>内置租房法律语料，端侧向量检索做语义匹配，有据可依，而非空口编造。</p>
+          <div class="feature-tags">
+            <span class="tag">RAG</span><span class="tag">民法典</span><span class="tag">端侧向量</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">06</div>
+        <div class="feature-content">
+          <h3>本地优先的数据策略</h3>
+          <p>所有数据存储在本机 AsyncStorage，无需注册账号，保护隐私，打开即用。</p>
+          <div class="feature-tags">
+            <span class="tag">AsyncStorage</span><span class="tag">无账号</span><span class="tag">隐私保护</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech" id="tech">
+  <div class="container">
+    <div class="tech-inner">
+      <div>
+        <span class="section-label">技术选型</span>
+        <h2 class="section-title">现代技术栈，<br>精心选配</h2>
+        <p class="section-desc">跨端 · 多模态 · 端侧推理 · Agent 架构，每个选择都有明确的技术理由。</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-name">React Native + Expo</div>
+          <div class="tech-desc">跨端应用，expo-router 路由</div>
+          <div class="tech-badge">跨端</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-name">DeepSeek</div>
+          <div class="tech-desc">Function Calling Agent，对话与工具调用</div>
+          <div class="tech-badge">Agent</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-name">智谱 GLM-4V</div>
+          <div class="tech-desc">多模态模型，深度视觉分析</div>
+          <div class="tech-badge">多模态</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-name">@xenova/transformers</div>
+          <div class="tech-desc">端侧向量化 + 语义检索 RAG</div>
+          <div class="tech-badge">端侧推理</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-name">高德地图 API</div>
+          <div class="tech-desc">实时通勤规划，REST API</div>
+          <div class="tech-badge">地图</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-name">AsyncStorage</div>
+          <div class="tech-desc">本地优先数据存储，无需账号</div>
+          <div class="tech-badge">本地</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="decisions" id="decisions">
+  <div class="container">
+    <span class="section-label">设计理念</span>
+    <h2 class="section-title">关键产品决策</h2>
+    <div class="decisions-grid">
+      <div class="decision-card">
+        <div class="decision-q">为什么让 AI 先"对齐"再找房？</div>
+        <p>用户描述需求时往往模糊，直接检索容易返回不匹配的结果。让助手先复述需求并请用户确认，减少一轮无效交互。</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-q">初筛 + 精筛的两层漏斗</div>
+        <p>免费的 DeepSeek 做批量评分（初筛），只有用户真正感兴趣的房源才调用多模态模型深度分析（精筛），兼顾覆盖率和成本。</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-q">法律知识为什么用 RAG？</div>
+        <p>租房法律涉及《民法典》具体条款，大模型直接回答容易编造细节。RAG 先检索条文再生成回答，确保有据可依。</p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-q">Agent 架构而非固定流程</div>
+        <p>Function Calling Agent 让助手自主决定调用哪个工具，对话体验更自然灵活，也更容易扩展新能力。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>开始使用 RentSmart AI</h2>
+      <p>一个产品经理的独立作品 · Made with care</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a href="https://github.com/gin300/RentSmartAI" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub 查看源码
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>RentSmart AI · 独立工具项目 · <a href="https://github.com/gin300/RentSmartAI">github.com/gin300/RentSmartAI</a></p>
+  <p style="margin-top:0.5rem">本项目不隶属于安居客、贝壳找房或其他房产平台</p>
+</footer>
+
+</body>
+</html>
