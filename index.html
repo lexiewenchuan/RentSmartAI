@@ -285,8 +285,8 @@ function renderHomeFeatured(){
 function showDetail(propId){
   const p=propData.find(x=>x.id===propId);
   if(!p)return;
-  const c=document.getElementById('detailContent');
-  c.innerHTML=''+
+  const el=document.getElementById('detailContent');
+  const html=''+
 '<div class="card detail-header">'+
 '  <div class="price-big">¥'+p.price+'<span>/月</span></div>'+
 '  <h3 style="margin:4px 0">'+p.name+'</h3>'+
@@ -300,11 +300,14 @@ function showDetail(propId){
 '  <div class="detail-section"><h4>📊 来源平台</h4><span style="font-size:13px;color:var(--t2)">'+p.source+'</span></div>'+
 '  <div class="detail-actions">'+
 '    <button class="btn-outline" onclick="addToCompare(\''+p.id+'\')">⚖️ 加入对比</button>'+
-'    <button class="btn-primary" onclick="aiAnalyzeProp(propData.find(x=>x.id==\''+p.id+'\'),\'detailAnalysis\')">🤖 AI分析</button>'+
+'    <button class="btn-primary" id="btnAiDetail" data-pid="'+p.id+'">🤖 AI分析</button>'+
 '  </div>'+
 '  <div id="detailAnalysis" style="margin-top:10px"></div>'+
 '</div>';
-  document.getElementById('detailContent').innerHTML=c;
+  el.innerHTML=html;
+  document.getElementById('btnAiDetail').onclick=function(){
+    aiAnalyzeProp(p,'detailAnalysis');
+  };
   switchTab('detail');
 }
 
