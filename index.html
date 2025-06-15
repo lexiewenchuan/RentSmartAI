@@ -50,41 +50,33 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 .announce .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:4px;animation:pulse 2s infinite}
 .prop-link{color:var(--accent);text-decoration:underline;cursor:pointer;font-weight:600}
 /* Home */
-.hero{background:linear-gradient(135deg,#0D5C3A,#1B7D54,#22A06B,#2BBD7E);color:#fff;padding:28px 20px;margin:12px 14px;border-radius:18px;box-shadow:0 8px 32px rgba(13,92,58,.3);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-30px;right:-20px;width:120px;height:120px;background:rgba(255,255,255,.08);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-20px;left:-10px;width:80px;height:80px;background:rgba(255,255,255,.05);border-radius:50%}
-.hero h2{font-size:22px;margin-bottom:6px;position:relative;z-index:1}
-.hero p{font-size:13px;opacity:.9;line-height:1.6;position:relative;z-index:1}
-.hero .stats{display:flex;gap:20px;margin-top:16px;position:relative;z-index:1}
-.hero .stats .st{text-align:center;flex:1}
-.hero .stats .st .num{font-size:26px;font-weight:800}
-.hero .stats .st .lbl{font-size:10px;opacity:.8;margin-top:2px}
+.hero{background:linear-gradient(135deg,#1B7D54,#22A06B);color:#fff;padding:24px 18px;margin:10px 14px;border-radius:16px;box-shadow:0 4px 20px rgba(34,160,107,.25)}
+.hero h2{font-size:20px;margin-bottom:6px}
+.hero p{font-size:13px;opacity:.9;line-height:1.6}
+.hero .stats{display:flex;gap:16px;margin-top:14px}
+.hero .stats .st{text-align:center}
+.hero .stats .st .num{font-size:24px;font-weight:700}
+.hero .stats .st .lbl{font-size:10px;opacity:.8}
 .quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 14px}
 .quick-actions .qa{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:all .15s;font-size:13px;font-weight:600;color:var(--text);box-shadow:var(--shadow)}
 .quick-actions .qa:active{transform:scale(.96);background:var(--bg)}
 .quick-actions .qa .qa-icon{font-size:24px;display:block;margin-bottom:4px}
-/* City grid */
-.city-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 14px}
-.city-chip{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:var(--shadow);font-size:12px;font-weight:600}
-.city-chip:active{transform:scale(.94);background:#e3f5ed;border-color:var(--accent)}
-.city-chip .cc-em{font-size:20px;display:block}
-.city-chip .cc-n{font-size:10px;color:var(--t3);margin-top:2px}
-/* Home search */
-.home-search{display:flex;gap:8px;margin:12px 14px}
-.home-search input{flex:1;padding:12px 16px;border:2px solid var(--border);border-radius:24px;font-size:14px;outline:none;background:var(--card);font-family:inherit;box-shadow:var(--shadow);transition:border .2s}
+.featured-card{transition:transform .15s;cursor:pointer;overflow:hidden;padding:0}
+.featured-card:active{transform:scale(.98)}
+.featured-card .fc-body{padding:14px}
+.featured-card .price{font-size:20px;font-weight:700;color:var(--accent)}
+.featured-card .price span{font-size:12px;font-weight:400;color:var(--t3)}
+.featured-card .meta{display:flex;gap:12px;margin-top:4px;font-size:12px;color:var(--t2)}
+.city-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 14px}
+.city-chip{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;transition:all .15s;box-shadow:var(--shadow);font-size:11px;font-weight:600}
+.city-chip:active{transform:scale(.94);background:#e3f5ed}
+.city-chip .cc-em{font-size:18px;display:block}
+.city-chip .cc-n{font-size:9px;color:var(--t3)}
+.home-search{display:flex;gap:6px;margin:10px 14px}
+.home-search input{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:20px;font-size:13px;outline:none;background:var(--card);font-family:inherit}
 .home-search input:focus{border-color:var(--accent)}
-.home-search button{padding:12px 20px;background:var(--accent);color:#fff;border:none;border-radius:24px;font-size:14px;cursor:pointer;font-weight:600;box-shadow:0 4px 12px rgba(34,160,107,.3)}
-/* Featured grid */
-.featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 14px 10px}
-.featured-card{padding:0;overflow:hidden;border-radius:14px;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:var(--shadow)}
-.featured-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
-.featured-card:active{transform:scale(.97)}
-.featured-card .fc-img{width:100%;height:100px;object-fit:cover;background:#e8edea}
-.featured-card .fc-body{padding:10px 12px 12px}
-.featured-card .fc-price{font-size:17px;font-weight:700;color:var(--accent)}
-.featured-card .fc-price span{font-size:11px;font-weight:400;color:var(--t3)}
-.featured-card .fc-name{font-size:13px;font-weight:600;margin:2px 0 4px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.featured-card .fc-meta{font-size:11px;color:var(--t2);display:flex;gap:8px}
+.home-search button{padding:10px 18px;background:var(--accent);color:#fff;border:none;border-radius:20px;font-size:13px;cursor:pointer;font-weight:600}
+.featured-card .fc-img{width:100%;height:100px;object-fit:cover;background:#e8edea}.featured-card .fc-body{padding:10px 12px 12px}.featured-card .fc-price{font-size:17px;font-weight:700;color:var(--accent)}.featured-card .fc-price span{font-size:11px;font-weight:400;color:var(--t3)}.featured-card .fc-name{font-size:13px;font-weight:600;margin:2px 0 4px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.featured-card .fc-meta{font-size:11px;color:var(--t2);display:flex;gap:8px}
 .section-title{font-size:15px;font-weight:700;padding:6px 14px 0;display:flex;align-items:center;gap:6px}
 .section-title .more{font-size:12px;color:var(--accent);margin-left:auto;cursor:pointer;font-weight:400}
 /* Detail */
@@ -149,7 +141,7 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 <div class="page active" id="page-home">
   <div class="hero">
     <h2>🏡 智能找房，从这里开始</h2>
-    <p>DeepSeek AI 驱动 · 真实房源数据 · 智能分析推荐</p>
+    <p>DeepSeek AI 驱动 · 300套真实房源 · 12城覆盖</p>
     <div class="stats">
       <div class="st"><div class="num">300</div><div class="lbl">精选房源</div></div>
       <div class="st"><div class="num">12</div><div class="lbl">覆盖城市</div></div>
@@ -157,7 +149,7 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
     </div>
   </div>
   <div class="home-search">
-    <input id="homeSearchInp" placeholder="🔍 输入城市、区域或关键词搜房源..." onkeydown="if(event.key==='Enter')homeSearch()">
+    <input id="homeSearchInp" placeholder="🔍 搜城市、区域或关键词..." onkeydown="if(event.key==='Enter')homeSearch()">
     <button onclick="homeSearch()">搜索</button>
   </div>
   <div class="city-grid" id="cityGrid"></div>
@@ -167,8 +159,8 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
     <div class="qa" onclick="switchTab('compare')"><span class="qa-icon">⚖️</span>房源对比</div>
     <div class="qa" onclick="switchTab('risk')"><span class="qa-icon">🛡️</span>风险筛查</div>
   </div>
-  <div class="section-title">🔥 精选推荐 <span class="more" onclick="switchTab('search')">查看全部 300 套 →</span></div>
-  <div class="featured-grid" id="featuredList"></div>
+  <div class="section-title">🔥 精选推荐 <span class="more" onclick="switchTab('search')">查看全部300套 →</span></div>
+  <div id="featuredList"></div>
 </div>
 
 <!-- CHAT -->
@@ -598,16 +590,21 @@ function initFilters(){
 
 // ===== HOME =====
 function renderCityGrid(){
-  const grid=document.getElementById('cityGrid');
-  const cities=[...new Set(propData.map(p=>p.city))];
-  const emojis={深圳:'🏙️',北京:'🏯',上海:'🌃',广州:'🌺',杭州:'🍵',成都:'🐼',武汉:'🏗️',南京:'🏛️',苏州:'🏞️',西安:'🏰',重庆:'🌉',长沙:'🎆'};
-  grid.innerHTML=cities.map(c=>{
-    const cnt=propData.filter(p=>p.city===c).length;
-    return '<div class="city-chip" onclick="pickCity(\''+c+'\')"><span class="cc-em">'+(emojis[c]||'🏘️')+'</span>'+c+'<div class="cc-n">'+cnt+'套</div></div>';
-  }).join('');
-  // Shuffle featured
-  const shuffled=[...propData].sort(()=>Math.random()-.5);
-  renderFeatured(shuffled.slice(0,6));
+  var grid=document.getElementById('cityGrid');
+  var cities=[];var seen={};
+  for(var i=0;i<propData.length;i++){var c=propData[i].city;if(!seen[c]){seen[c]=1;cities.push(c);}}
+  var emojis={深圳:'🏙️',北京:'🏯',上海:'🌃',广州:'🌺',杭州:'🍵',成都:'🐼',武汉:'🏗️',南京:'🏛️',苏州:'🏞️',西安:'🏰',重庆:'🌉',长沙:'🎆'};
+  var h='';
+  for(var i=0;i<cities.length;i++){
+    var c=cities[i];
+    var cnt=0;for(var j=0;j<propData.length;j++){if(propData[j].city===c)cnt++;}
+    h+='<div class="city-chip" onclick="pickCity(\''+c+'\')"><span class="cc-em">'+(emojis[c]||'🏘️')+'</span>'+c+'<div class="cc-n">'+cnt+'套</div></div>';
+  }
+  grid.innerHTML=h;
+  var sh=[];
+  for(var i=0;i<propData.length;i++)sh.push(propData[i]);
+  for(var i=sh.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=sh[i];sh[i]=sh[j];sh[j]=t;}
+  renderFeatured(sh.slice(0,6));
 }
 function pickCity(city){
   document.getElementById('city').value=city;
@@ -616,38 +613,56 @@ function pickCity(city){
   switchTab('search');
 }
 function homeSearch(){
-  const q=document.getElementById('homeSearchInp').value.trim();
+  var q=document.getElementById('homeSearchInp').value.trim();
   if(!q)return;
-  // Try matching city
-  for(const c of [...new Set(propData.map(p=>p.city))]){
-    if(c.includes(q)||q.includes(c)){pickCity(c);return;}
-  }
-  // Fallback: search all text fields
+  var cities=[];var seen={};
+  for(var i=0;i<propData.length;i++){var c=propData[i].city;if(!seen[c]){seen[c]=1;cities.push(c);}}
+  for(var i=0;i<cities.length;i++){if(cities[i].indexOf(q)>=0||q.indexOf(cities[i])>=0){pickCity(cities[i]);return;}}
   switchTab('search');
   document.getElementById('budget').value='';
   document.getElementById('city').value='';
   document.getElementById('district').value='';
-  const results=propData.filter(p=>
-    p.name.includes(q)||p.district.includes(q)||p.city.includes(q)||
-    p.desc.includes(q)||p.tags.some(t=>t.includes(q))||
-    p.metro.includes(q)
-  );
-  const res=document.getElementById('searchResults');
+  var results=[];
+  for(var i=0;i<propData.length;i++){
+    var p=propData[i];
+    if(p.name.indexOf(q)>=0||p.district.indexOf(q)>=0||p.city.indexOf(q)>=0||p.desc.indexOf(q)>=0||p.metro.indexOf(q)>=0){results.push(p);}
+    else{for(var j=0;j<p.tags.length;j++){if(p.tags[j].indexOf(q)>=0){results.push(p);break;}}}
+  }
   if(results.length===0){
-    res.innerHTML='<div class="card" style="text-align:center;color:var(--t3);padding:30px">未找到匹配「'+q+'」的房源<br><span style="font-size:12px">试试其他关键词</span></div>';
+    document.getElementById('searchResults').innerHTML='<div class="card" style="text-align:center;color:var(--t3);padding:30px">未找到匹配房源</div>';
   }else{
     renderPropCards(results.slice(0,50));
   }
 }
 function renderFeatured(props){
-  const list=document.getElementById('featuredList');
-  list.innerHTML=props.map(p=>
-    '<div class="featured-card" onclick="showDetail(\''+p.id+'\')">'+
-    '<img class="fc-img" src="'+imgUrl(p.imgSeed,300,150)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'">'+
-    '<div class="fc-body"><div class="fc-price">¥'+p.price+'<span>/月</span></div>'+
-    '<div class="fc-name">'+p.name+'</div>'+
-    '<div class="fc-meta"><span>'+p.city+p.district+'</span><span>'+p.size+'㎡</span></div></div></div>'
-  ).join('');
+  var list=document.getElementById('featuredList');
+  var h='';
+  for(var i=0;i<props.length;i++){
+    var p=props[i];
+    h+='<div class="featured-card" onclick="showDetail(\''+p.id+'\')">';
+    h+='<img class="fc-img" src="'+imgUrl(p.imgSeed,300,150)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'">';
+    h+='<div class="fc-body"><div class="fc-price">¥'+p.price+'<span>/月</span></div>';
+    h+='<div class="fc-name">'+p.name+'</div>';
+    h+='<div class="fc-meta"><span>'+p.city+p.district+'</span><span>'+p.size+'㎡</span></div></div></div>';
+  }
+  list.innerHTML=h;
+}
+function renderPropCards(props,containerId){
+  var res=document.getElementById(containerId||'searchResults');
+  var h='<div style="font-size:12px;color:var(--t3);padding:4px 14px">找到 '+props.length+' 套房源</div>';
+  for(var i=0;i<props.length;i++){
+    var p=props[i];
+    h+='<div class="card listing" onclick="showDetail(\''+p.id+'\')">';
+    h+='<img class="prop-img" src="'+imgUrl(p.imgSeed,400,250)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'">';
+    h+='<div class="lc-body"><div class="price">¥'+p.price+'<span>/月</span></div>';
+    h+='<div style="font-weight:600;margin-bottom:4px">'+p.name+'</div>';
+    h+='<div class="meta"><span>📍 '+p.city+p.district+'</span><span>'+p.type+'</span><span>'+p.size+'㎡</span></div>';
+    h+='<div class="meta"><span>🚇 '+p.metro+'</span><span>🏗️ '+p.buildYear+'年</span></div>';
+    h+='<div class="tag-row">';
+    for(var j=0;j<p.tags.length;j++)h+='<span class="t">'+p.tags[j]+'</span>';
+    h+='</div><div class="view-hint">点击查看详情 →</div></div></div>';
+  }
+  res.innerHTML=h;
 }
 function renderHomeFeatured(){renderCityGrid();}
 
@@ -714,31 +729,23 @@ async function chatSend(){
   }catch(e){hide('chatLoading');addMsg('assistant','网络错误，请重试。');}
   document.getElementById('chatBtn').disabled=false;inp.focus();
 }
-addMsg('assistant','你好！我是 RentSmart AI 🤖\n\n由 DeepSeek 驱动，拥有300套精选房源：\n🏙️ 深圳·北京·上海·广州·杭州·成都\n🏙️ 武汉·南京·苏州·西安·重庆·长沙\n\n💬 问我"南山3000以内"推荐\n🔍 去首页搜城市或关键词\n⚖️ 用"对比"PK两套房');
+addMsg('assistant','你好！我是 RentSmart AI 🤖\n\n由 DeepSeek 驱动，拥有300套精选房源：\n🏙️ 深圳6套 · 北京2套 · 上海2套\n🏙️ 广州1套 · 杭州1套\n\n💬 问我"南山3000以内"推荐\n🔍 去"找房"看全部带图房源\n⚖️ 用"对比"PK两套房');
 
 // ===== SEARCH =====
-function renderPropCards(props,containerId){
-  const res=document.getElementById(containerId||'searchResults');
-  res.innerHTML='<div style="font-size:12px;color:var(--t3);padding:4px 14px">找到 '+props.length+' 套房源</div>';
-  res.innerHTML+=props.map(p=>
-    '<div class="card listing" onclick="showDetail(\''+p.id+'\')">'+
-    '<img class="prop-img" src="'+imgUrl(p.imgSeed,400,250)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'">'+
-    '<div class="lc-body"><div class="price">¥'+p.price+'<span>/月</span></div>'+
-    '<div style="font-weight:600;margin-bottom:4px">'+p.name+'</div>'+
-    '<div class="meta"><span>📍 '+p.city+p.district+'</span><span>'+p.type+'</span><span>'+p.size+'㎡</span></div>'+
-    '<div class="meta"><span>🚇 '+p.metro+'</span><span>🏗️ '+p.buildYear+'年</span></div>'+
-    '<div class="tag-row">'+p.tags.map(t=>'<span class="t">'+t+'</span>').join('')+'</div>'+
-    '<div class="view-hint">点击查看详情 →</div></div></div>'
-  ).join('');
-}
 function searchProps(){
-  const city=document.getElementById('city').value;
-  const district=document.getElementById('district').value;
-  const budget=parseInt(document.getElementById('budget').value)||999999;
-  let filtered=propData.filter(p=>(!city||p.city===city)&&(!district||p.district===district)&&p.price<=budget);
-  const res=document.getElementById('searchResults');
-  if(!filtered.length){res.innerHTML='<div class="card" style="text-align:center;color:var(--t3);padding:30px">暂无匹配房源<br><span style="font-size:12px">试试扩大搜索范围</span></div>';return;}
-  renderPropCards(filtered);
+  var city=document.getElementById('city').value;
+  var district=document.getElementById('district').value;
+  var budget=parseInt(document.getElementById('budget').value)||999999;
+  var filtered=[];
+  for(var i=0;i<propData.length;i++){
+    var p=propData[i];
+    if((!city||p.city===city)&&(!district||p.district===district)&&p.price<=budget)filtered.push(p);
+  }
+  if(!filtered.length){
+    document.getElementById('searchResults').innerHTML='<div class="card" style="text-align:center;color:var(--t3);padding:30px">暂无匹配房源<br><span style="font-size:12px">试试扩大搜索范围</span></div>';
+  }else{
+    renderPropCards(filtered);
+  }
 }
 
 async function aiAnalyzeProp(p,containerId){
