@@ -8,24 +8,24 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#f5f7f6;--card:#fff;--accent:#22A06B;--a2:#1B7D54;--text:#1A2E1F;--t2:#4A6358;--t3:#7A9489;--border:#e2ebe6;--red:#E35B5B;--orange:#F0A14A;--shadow:0 2px 12px rgba(0,0,0,.06);--nav-h:54px}
 body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);max-width:420px;margin:0 auto;min-height:100vh;padding-bottom:calc(var(--nav-h) + 10px)}
-
 .header{position:sticky;top:0;z-index:30;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .header .logo{font-weight:700;font-size:17px;color:var(--accent)}
 .header .tag{font-size:10px;color:var(--t3);margin-left:auto}
-
 .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:var(--card);border-top:1px solid var(--border);display:flex;overflow-x:auto;z-index:30;height:var(--nav-h);-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .bottom-nav::-webkit-scrollbar{display:none}
 .bottom-nav .tab{flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 10px;cursor:pointer;border:none;background:none;font-size:10px;color:var(--t3);transition:color .2s;min-width:48px}
 .bottom-nav .tab.active{color:var(--accent);font-weight:600}
 .bottom-nav .tab .icon{font-size:16px}
-
 .page{display:none;min-height:calc(100vh - 56px - var(--nav-h))}
 .page.active{display:block}
-
 .card{background:var(--card);border-radius:14px;padding:14px;margin:10px 14px;box-shadow:var(--shadow);border:1px solid var(--border)}
 .card .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .card .tag-row .t{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--bg);color:var(--t2)}
-
+/* Images */
+.prop-img{width:100%;height:180px;object-fit:cover;border-radius:10px;background:#e8edea}
+.prop-img-sm{width:100%;height:130px;object-fit:cover;border-radius:10px 10px 0 0;background:#e8edea}
+.prop-img-hero{width:100%;height:220px;object-fit:cover;border-radius:14px;background:#e8edea}
+.prop-img-placeholder{display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:40px;background:linear-gradient(135deg,#e8edea,#d5e0da)}
 /* Chat */
 .chat-area{padding:10px 14px;min-height:60vh;max-height:calc(100vh - 180px);overflow-y:auto}
 .chat-msg{display:flex;gap:8px;margin-bottom:14px;animation:up .3s}
@@ -37,7 +37,7 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 .chat-msg .bubble{max-width:82%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.7;word-break:break-word}
 .chat-msg.assistant .bubble{background:var(--card);border:1px solid var(--border)}
 .chat-msg.user .bubble{background:var(--accent);color:#fff}
-.chat-bar{display:flex;gap:8px;padding:8px 12px 16px;background:var(--card);border-top:1px solid var(--border);margin-top:6px}
+.chat-bar{display:flex;gap:8px;padding:8px 12px 16px;background:var(--card);border-top:1px solid var(--border)}
 .chat-bar input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:20px;font-size:14px;outline:none;background:var(--bg);font-family:inherit}
 .chat-bar input:focus{border-color:var(--accent)}
 .chat-bar button{padding:10px 16px;background:var(--accent);color:#fff;border:none;border-radius:20px;font-size:14px;cursor:pointer;font-weight:600;white-space:nowrap}
@@ -49,7 +49,6 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 .announce{text-align:center;padding:10px;font-size:12px;color:var(--t3)}
 .announce .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:4px;animation:pulse 2s infinite}
 .prop-link{color:var(--accent);text-decoration:underline;cursor:pointer;font-weight:600}
-
 /* Home */
 .hero{background:linear-gradient(135deg,#1B7D54,#22A06B);color:#fff;padding:24px 18px;margin:10px 14px;border-radius:16px;box-shadow:0 4px 20px rgba(34,160,107,.25)}
 .hero h2{font-size:20px;margin-bottom:6px}
@@ -62,14 +61,14 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 .quick-actions .qa{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:all .15s;font-size:13px;font-weight:600;color:var(--text);box-shadow:var(--shadow)}
 .quick-actions .qa:active{transform:scale(.96);background:var(--bg)}
 .quick-actions .qa .qa-icon{font-size:24px;display:block;margin-bottom:4px}
-.featured-card{transition:transform .15s;cursor:pointer}
+.featured-card{transition:transform .15s;cursor:pointer;overflow:hidden;padding:0}
 .featured-card:active{transform:scale(.98)}
+.featured-card .fc-body{padding:14px}
 .featured-card .price{font-size:20px;font-weight:700;color:var(--accent)}
 .featured-card .price span{font-size:12px;font-weight:400;color:var(--t3)}
 .featured-card .meta{display:flex;gap:12px;margin-top:4px;font-size:12px;color:var(--t2)}
 .section-title{font-size:15px;font-weight:700;padding:6px 14px 0;display:flex;align-items:center;gap:6px}
 .section-title .more{font-size:12px;color:var(--accent);margin-left:auto;cursor:pointer;font-weight:400}
-
 /* Detail */
 .back-btn{padding:8px 14px;background:none;border:none;color:var(--accent);font-size:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:4px}
 .detail-header{position:relative}
@@ -80,31 +79,32 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 .detail-section h4{font-size:13px;color:var(--t3);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
 .detail-actions{display:flex;gap:8px;margin-top:12px}
 .detail-actions button{flex:1;padding:10px;border-radius:10px;border:none;font-size:13px;cursor:pointer;font-weight:600}
-.detail-actions .btn-primary{background:var(--accent);color:#fff}
-.detail-actions .btn-outline{background:var(--card);color:var(--accent);border:1px solid var(--accent)}
-
+.btn-primary{background:var(--accent);color:#fff}
+.btn-outline{background:var(--card);color:var(--accent);border:1px solid var(--accent)}
 /* Search */
 .filter-bar{display:flex;gap:6px;padding:10px 14px;flex-wrap:wrap}
 .filter-bar select,.filter-bar input{padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:var(--card);outline:none;font-family:inherit}
 .filter-bar select:focus,.filter-bar input:focus{border-color:var(--accent)}
 .filter-bar input{flex:1;min-width:80px}
-.listing{cursor:pointer;transition:transform .15s}
+.filter-bar button{padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600}
+.listing{cursor:pointer;transition:transform .15s;overflow:hidden;padding:0}
 .listing:active{transform:scale(.98)}
+.listing .lc-body{padding:14px}
 .listing .price{font-size:20px;font-weight:700;color:var(--accent)}
 .listing .price span{font-size:12px;font-weight:400;color:var(--t3)}
 .listing .meta{display:flex;gap:12px;margin-top:4px;font-size:12px;color:var(--t2)}
+.listing .view-hint{margin-top:6px;font-size:12px;color:var(--accent);font-weight:600}
 .ai-tip{background:#e3f5ed;padding:8px 12px;border-radius:8px;font-size:12px;color:var(--a2);margin-top:8px;line-height:1.6}
-
 /* Compare */
 .compare-select{display:flex;gap:6px;padding:10px 14px;align-items:center;flex-wrap:wrap}
 .compare-select select{flex:1;min-width:80px;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:var(--card);outline:none;font-family:inherit}
 .compare-select span{color:var(--t3);font-weight:600;font-size:13px}
+.compare-select button{padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600}
 .compare-table{width:100%;border-collapse:collapse;font-size:13px}
 .compare-table th,.compare-table td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--border)}
 .compare-table th:first-child,.compare-table td:first-child{text-align:left;font-weight:600;color:var(--t2);width:30%}
 .compare-table th{color:var(--t3);font-size:11px;font-weight:500;background:var(--bg)}
 .highlight{background:#e3f5ed}
-
 /* Risk */
 .risk-item{display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid var(--border);cursor:pointer}
 .risk-item:last-child{border-bottom:none}
@@ -115,7 +115,6 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 .risk-lvl{padding:3px 8px;border-radius:10px;font-size:11px;font-weight:600}
 .risk-lvl.high{background:#fde8e8;color:var(--red)}.risk-lvl.med{background:#fef3e2;color:var(--orange)}.risk-lvl.low{background:#e3f5ed;color:var(--accent)}
 .risk-result{background:#e3f5ed;padding:12px;border-radius:8px;font-size:14px;line-height:1.7;margin-top:10px}
-
 /* Legal */
 .qa-list .qa-item{padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer}
 .qa-list .qa-item:last-child{border-bottom:none}
@@ -128,15 +127,15 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 
 <div class="header"><span class="logo">🏠 RentSmart AI</span><span class="tag">DeepSeek 驱动</span></div>
 
-<!-- ====== HOME ====== -->
+<!-- HOME -->
 <div class="page active" id="page-home">
   <div class="hero">
     <h2>🏡 智能找房，从这里开始</h2>
     <p>DeepSeek AI 帮你分析房源、对比价格、规避风险、解答法律问题</p>
     <div class="stats">
-      <div class="st"><div class="num">6+</div><div class="lbl">真实房源</div></div>
-      <div class="st"><div class="num">AI</div><div class="lbl">智能分析</div></div>
-      <div class="st"><div class="num">7</div><div class="lbl">功能模块</div></div>
+      <div class="st"><div class="num">12</div><div class="lbl">精选房源</div></div>
+      <div class="st"><div class="num">6</div><div class="lbl">覆盖城市</div></div>
+      <div class="st"><div class="num">AI</div><div class="lbl">实时分析</div></div>
     </div>
   </div>
   <div class="quick-actions">
@@ -149,9 +148,9 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
   <div id="featuredList"></div>
 </div>
 
-<!-- ====== CHAT ====== -->
+<!-- CHAT -->
 <div class="page" id="page-chat">
-  <div class="announce"><span class="dot"></span>真实AI对话 · 点击房源名查看详情</div>
+  <div class="announce"><span class="dot"></span>真实AI对话 · 点击蓝色房源名查看详情</div>
   <div class="chat-area" id="chat"></div>
   <div id="chatLoading" class="loading" style="display:none"><span></span><span></span><span></span></div>
   <div class="chat-bar">
@@ -160,38 +159,38 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
   </div>
 </div>
 
-<!-- ====== SEARCH ====== -->
+<!-- SEARCH -->
 <div class="page" id="page-search">
   <div class="filter-bar">
-    <select id="city"><option value="深圳">深圳</option><option value="北京">北京</option><option value="上海">上海</option><option value="广州">广州</option><option value="杭州">杭州</option></select>
-    <select id="district"><option value="">全部区域</option><option value="南山">南山</option><option value="福田">福田</option><option value="罗湖">罗湖</option><option value="宝安">宝安</option><option value="龙华">龙华</option><option value="龙岗">龙岗</option></select>
-    <input id="budget" placeholder="预算(元)" type="number">
-    <button onclick="searchProps()" style="padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600">搜索</button>
+    <select id="city"><option value="">全部城市</option></select>
+    <select id="district"><option value="">全部区域</option></select>
+    <input id="budget" placeholder="预算上限(元)" type="number">
+    <button onclick="searchProps()">搜索</button>
   </div>
   <div id="searchLoading" class="loading" style="display:none;margin:0 14px"><span></span><span></span><span></span></div>
   <div id="searchResults"></div>
 </div>
 
-<!-- ====== DETAIL ====== -->
+<!-- DETAIL -->
 <div class="page" id="page-detail">
   <button class="back-btn" onclick="switchTab('search')">← 返回列表</button>
   <div id="detailContent"></div>
 </div>
 
-<!-- ====== COMPARE ====== -->
+<!-- COMPARE -->
 <div class="page" id="page-compare">
-  <div class="card" style="text-align:center;color:var(--t3);font-size:13px;margin-bottom:6px">选择两个房源，AI帮你对比优劣</div>
+  <div class="card" style="text-align:center;color:var(--t3);font-size:13px;margin-bottom:6px">选择两个房源，AI帮你全方位对比</div>
   <div class="compare-select">
     <select id="compA"><option value="">-- 房源A --</option></select>
     <span>VS</span>
     <select id="compB"><option value="">-- 房源B --</option></select>
-    <button onclick="compareProps()" style="padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600">对比</button>
+    <button onclick="compareProps()">对比</button>
   </div>
   <div id="compLoading" class="loading" style="display:none;margin:0 14px"><span></span><span></span><span></span></div>
   <div id="compResult"></div>
 </div>
 
-<!-- ====== LEGAL ====== -->
+<!-- LEGAL -->
 <div class="page" id="page-legal">
   <div class="card" style="text-align:center;color:var(--t3);font-size:13px">租房法律问题，点下面或自己提问</div>
   <div id="legalQAList" class="card qa-list"></div>
@@ -203,7 +202,7 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
   <div id="legalAnswer" style="margin:0 14px"></div>
 </div>
 
-<!-- ====== RISK ====== -->
+<!-- RISK -->
 <div class="page" id="page-risk">
   <div class="card" style="text-align:center;color:var(--t3);font-size:13px">勾选你遇到的情况，AI评估风险</div>
   <div class="card" id="riskChecks"></div>
@@ -215,7 +214,7 @@ body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:var(--bg);co
 </div>
 
 <!-- Bottom Nav -->
-<div class="bottom-nav" id="bottomNav">
+<div class="bottom-nav">
   <button class="tab active" onclick="switchTab('home')"><span class="icon">🏠</span>首页</button>
   <button class="tab" onclick="switchTab('chat')"><span class="icon">💬</span>AI对话</button>
   <button class="tab" onclick="switchTab('search')"><span class="icon">🔍</span>找房</button>
@@ -247,85 +246,98 @@ function switchTab(tab){
   const pg=document.getElementById('page-'+tab);
   if(pg)pg.classList.add('active');
   document.querySelectorAll('.tab').forEach(t=>{if(t.textContent.includes(tabMap[tab]))t.classList.add('active')});
-  // Scroll active tab into view
   const activeTab=document.querySelector('.tab.active');
   if(activeTab)activeTab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   if(tab==='chat')document.getElementById('chatInp').focus();
   if(tab==='home')renderHomeFeatured();
 }
-
-// ===== Loading =====
 function show(id){document.getElementById(id).style.display='flex';}
 function hide(id){document.getElementById(id).style.display='none';}
+function imgUrl(seed,w,h){return 'https://picsum.photos/seed/'+seed+'/'+w+'/'+h;}
 
-// ===== Property Data (expanded) =====
+// ===== PROPERTY DATA - 12 listings across 6 cities =====
 const propData=[
-  {id:'p1',name:'南山科技园精装一室',district:'南山',price:2800,type:'整租',size:35,floor:'12/28',metro:'高新园站500m',tags:['精装修','朝南','电梯房','近地铁'],desc:'位于南山科技园核心区，步行5分钟到地铁。精装修拎包入住，朝南采光好。楼下有超市、餐厅，生活便利，适合在科技园上班的年轻白领。',amenities:['空调','洗衣机','冰箱','热水器','WiFi','衣柜'],contact:'王先生 138****6789',source:'贝壳找房'},
-  {id:'p2',name:'福田中心区单身公寓',district:'福田',price:3500,type:'整租',size:40,floor:'8/32',metro:'会展中心站300m',tags:['公寓','有健身房','品牌物业'],desc:'福田CBD核心地段，配套成熟。品牌公寓管理，24小时安保。房间配置齐全，楼内有健身房、公共厨房。走路5分钟到COCO Park，通勤到福田CBD只需10分钟。',amenities:['中央空调','全套家具','智能门锁','健身房','每周保洁','快递代收'],contact:'李管家 139****8901',source:'自如'},
-  {id:'p3',name:'宝安西乡阳光主卧',district:'宝安',price:1800,type:'合租',size:22,floor:'5/7',metro:'西乡站800m',tags:['朝南','大飘窗','民水民电'],desc:'宝安西乡小区合租主卧，朝南大飘窗采光极好。室友均为附近上班族，作息规律。民用水电便宜，小区安静安全，有门禁和保安。地铁站走路10分钟。',amenities:['飘窗','双人床','书桌','衣柜','共用厨房','共用卫生间'],contact:'张女士 136****3456',source:'58同城'},
-  {id:'p4',name:'罗湖国贸老小区两室',district:'罗湖',price:4200,type:'整租',size:55,floor:'3/8',metro:'国贸站600m',tags:['两室一厅','老小区','可做饭'],desc:'罗湖国贸附近老小区，两室一厅格局方正。虽然装修偏旧但维护良好，厨房宽敞可做饭。周边菜市场、超市步行3分钟，生活气息浓厚。适合家庭居住或和朋友合租。',amenities:['两室一厅','天然气厨房','阳台','热水器','空调','冰箱'],contact:'房东 133****7890',source:'房天下'},
-  {id:'p5',name:'龙华民治次卧合租',district:'龙华',price:1300,type:'合租',size:15,floor:'15/30',metro:'民治站1km',tags:['次卧','可短租','有保洁'],desc:'龙华民治地铁站附近次卧，租金实惠。可短租1个月起。每月有保洁打扫公共区域。室友友善，已住2年。楼下公交站直达福田。',amenities:['单人床','书桌','WiFi','共用卫生间','每月保洁','电梯'],contact:'陈先生 150****2345',source:'豆瓣租房'},
-  {id:'p6',name:'龙岗中心城整租两室',district:'龙岗',price:2500,type:'整租',size:60,floor:'6/18',metro:'大运站1.2km',tags:['两室一厅','大阳台','可养宠物'],desc:'龙岗中心城大两室，60㎡空间宽敞。大阳台视野好，可以养宠物。小区绿化率高，有游泳池和儿童乐园。虽然距市区较远，但周边配套完善，适合喜欢安静环境的租客。',amenities:['两室一厅','大阳台','可养宠物','游泳池','停车位','空调'],contact:'刘姐 137****8901',source:'安居客'},
+  {id:'p1',name:'南山科技园精装一室',city:'深圳',district:'南山',price:2800,type:'整租',size:35,floor:'12/28',metro:'高新园站 500m',buildYear:2019,tags:['精装修','朝南','电梯房','近地铁','智能门锁'],desc:'位于南山科技园核心区，步行5分钟到地铁1号线高新园站。2019年次新小区，精装修拎包入住，朝南采光极好。楼下有华润万家、星巴克、麦当劳，周边腾讯、百度等科技公司云集，适合在科技园上班的年轻白领。小区有24小时保安和智能门禁。',amenities:['空调','洗衣机','冰箱','热水器','WiFi','衣柜','智能门锁','电梯'],contact:'王先生 138****6789',source:'贝壳找房',imgSeed:'apt1'},
+  {id:'p2',name:'福田CBD品牌公寓',city:'深圳',district:'福田',price:3500,type:'整租',size:40,floor:'8/32',metro:'会展中心站 300m',buildYear:2021,tags:['品牌公寓','健身房','管家服务','木质地板'],desc:'福田CBD核心地段，2021年新建品牌公寓。全套品牌家具家电，开放式厨房+独立卫生间。楼内配备健身房、公共休闲区、快递柜。管家式服务，维修响应快。走路5分钟到COCO Park购物中心、平安金融中心。适合追求品质生活的金融/咨询从业者。',amenities:['中央空调','品牌家具','智能门锁','健身房','每周保洁','快递代收','24h管家'],contact:'李管家 139****8901',source:'自如',imgSeed:'apt2'},
+  {id:'p3',name:'宝安西乡阳光主卧',city:'深圳',district:'宝安',price:1800,type:'合租',size:22,floor:'5/7',metro:'西乡站 800m',buildYear:2015,tags:['朝南','大飘窗','民水民电','室友优质'],desc:'宝安西乡地铁口小区合租主卧，朝南大飘窗采光极好。民用水电便宜，月均不到100元。室友均为科技园上班族，作息规律不扰民。小区安静安全，有门禁和保安，绿化率高。周边菜市场、超市步行5分钟。适合在宝安/南山上班的年轻人。',amenities:['大飘窗','双人床','书桌','衣柜','共用厨房','共用卫生间','洗衣机','冰箱'],contact:'张女士 136****3456',source:'58同城',imgSeed:'apt3'},
+  {id:'p4',name:'罗湖国贸两室一厅',city:'深圳',district:'罗湖',price:4200,type:'整租',size:55,floor:'3/8',metro:'国贸站 600m',buildYear:2005,tags:['两室一厅','可做饭','老小区','性价比高'],desc:'罗湖国贸附近成熟社区，两室一厅格局方正实用。虽然楼龄稍老但维护良好，厨房宽敞带天然气。周边菜市场、超市、茶餐厅步行3分钟，生活气息浓厚。地铁1号线国贸站步行8分钟，去福田/南山通勤方便。适合家庭居住或两三人合租。',amenities:['两室一厅','天然气','阳台','热水器','空调','冰箱','洗衣机','衣柜'],contact:'房东直租 133****7890',source:'房天下',imgSeed:'apt4'},
+  {id:'p5',name:'龙华民治次卧合租',city:'深圳',district:'龙华',price:1300,type:'合租',size:15,floor:'15/30',metro:'民治站 1km',buildYear:2018,tags:['次卧','可短租','有保洁','低价好房'],desc:'龙华民治地铁站附近次卧，深圳租房性价比之选。可短租1个月起，押一付一。每月有保洁打扫公共区域。室友均为年轻人，友善好相处，已稳定合租2年。楼下公交站直达福田CBD。适合预算有限但追求品质的年轻人。',amenities:['单人床','书桌','WiFi','共用卫生间','每月保洁','电梯','空调'],contact:'陈先生 150****2345',source:'豆瓣租房',imgSeed:'apt5'},
+  {id:'p6',name:'龙岗中心城大两室',city:'深圳',district:'龙岗',price:2500,type:'整租',size:60,floor:'6/18',metro:'大运站 1.2km',buildYear:2016,tags:['两室一厅','大阳台','可养宠物','超大空间'],desc:'龙岗中心城大两室，60㎡空间宽敞舒适。大阳台视野开阔，可养宠物（猫狗均可）。小区绿化率高达40%，有游泳池、儿童乐园和篮球场。虽距市中心较远，但周边配套完善：沃尔玛、万科广场、龙岗区人民医院均在1km内。适合喜欢安静、大空间的租客。',amenities:['两室一厅','大阳台','可养宠物','游泳池','停车位','空调','冰箱','热水器'],contact:'刘姐 137****8901',source:'安居客',imgSeed:'apt6'},
+  {id:'p7',name:'朝阳大悦城附近开间',city:'北京',district:'朝阳',price:4500,type:'整租',size:30,floor:'18/26',metro:'青年路站 400m',buildYear:2020,tags:['开间','精装修','近地铁','朝阳大悦城'],desc:'北京朝阳大悦城附近精品开间，2020年新建小区。独立厨卫，精装修配套齐全。楼下就是朝阳大悦城，购物餐饮娱乐一站式。地铁6号线青年路站步行5分钟，去国贸/三里屯/望京均在30分钟内。适合在朝阳区工作的年轻白领。',amenities:['空调','洗衣机','冰箱','独立厨卫','WiFi','电梯','门禁','暖气'],contact:'赵管家 188****3456',source:'贝壳找房',imgSeed:'apt7'},
+  {id:'p8',name:'海淀中关村合租主卧',city:'北京',district:'海淀',price:3200,type:'合租',size:25,floor:'10/18',metro:'中关村站 600m',buildYear:2017,tags:['主卧','独卫','近中关村','学术氛围'],desc:'海淀中关村核心区域合租主卧带独立卫生间。周边北大、清华、中科院环绕，学术氛围浓厚。小区安静，室友均为IT/科研从业者，作息规律。步行10分钟到中关村地铁站，周边食宝街、欧美汇购物中心美食云集。暖气充足，冬天很舒适。',amenities:['主卧','独立卫生间','空调','暖气','书桌','WiFi','电梯','门禁'],contact:'孙女士 186****7890',source:'自如',imgSeed:'apt8'},
+  {id:'p9',name:'浦东陆家嘴豪华公寓',city:'上海',district:'浦东',price:6800,type:'整租',size:50,floor:'22/35',metro:'陆家嘴站 500m',buildYear:2022,tags:['豪华装修','江景','管家服务','高端公寓'],desc:'上海浦东陆家嘴核心区豪华公寓，22楼可赏黄浦江景。2022年新建高端小区，全屋品牌精装+智能家居系统。楼下就是陆家嘴金融城，步行5分钟到地铁2号线。恒温泳池、健身房、空中花园一应俱全。适合金融/咨询行业高薪人士。',amenities:['全屋智能','中央空调','品牌家具','恒温泳池','健身房','管家服务','停车位','门禁'],contact:'陈经理 139****0123',source:'链家',imgSeed:'apt9'},
+  {id:'p10',name:'徐汇衡山路文艺一室',city:'上海',district:'徐汇',price:5200,type:'整租',size:38,floor:'3/6',metro:'衡山路站 300m',buildYear:2008,tags:['法租界','文艺','梧桐区','老洋房'],desc:'上海徐汇衡山路法租界区域，梧桐树下的文艺一室户。老洋房改造，保留了原始壁炉和木地板，同时配有现代厨卫。周边独立咖啡馆、小酒馆、买手店林立，周末散步到武康路、安福路仅需10分钟。适合追求生活品质的设计/艺术从业者。',amenities:['空调','洗衣机','冰箱','独立厨卫','壁炉装饰','木地板','WiFi'],contact:'房东 138****4567',source:'豆瓣租房',imgSeed:'apt10'},
+  {id:'p11',name:'天河珠江新城单间',city:'广州',district:'天河',price:3000,type:'整租',size:28,floor:'20/30',metro:'珠江新城站 400m',buildYear:2019,tags:['CBD','精装修','近地铁','配套齐全'],desc:'广州天河珠江新城CBD核心单间，2019年次新房。麻雀虽小五脏俱全，独立厨卫+阳台。花城广场、K11、广州图书馆均在步行范围内。地铁3号线/5号线交汇，通勤便利。周边美食云集：点都德、陶陶居走路就到。适合在珠江新城上班的白领。',amenities:['空调','洗衣机','冰箱','独立厨卫','阳台','WiFi','电梯','门禁'],contact:'黄先生 159****3456',source:'贝壳找房',imgSeed:'apt11'},
+  {id:'p12',name:'西湖区文三路精装两室',city:'杭州',district:'西湖',price:3800,type:'整租',size:52,floor:'7/18',metro:'文三路站 500m',buildYear:2018,tags:['两室一厅','近阿里','西湖区','精装修'],desc:'杭州西湖区文三路精装两室，距阿里巴巴西溪园区仅3站地铁。2018年次新小区，绿化好、物业好。周边浙大紫金港校区，学术和生活氛围俱佳。西溪湿地周末骑车15分钟可达。适合阿里/蚂蚁/附近IT公司的员工。',amenities:['两室一厅','空调','冰箱','洗衣机','热水器','WiFi','电梯','停车位'],contact:'周女士 177****8901',source:'我爱我家',imgSeed:'apt12'},
 ];
 
-// ===== HOME page =====
+// ===== Populate city/district filters =====
+function initFilters(){
+  const citySel=document.getElementById('city');
+  const districtSel=document.getElementById('district');
+  const cities=[...new Set(propData.map(p=>p.city))];
+  citySel.innerHTML='<option value="">全部城市</option>'+cities.map(c=>'<option value="'+c+'">'+c+'</option>').join('');
+  citySel.onchange=function(){
+    const city=this.value;
+    const districts=[...new Set(propData.filter(p=>!city||p.city===city).map(p=>p.district))];
+    districtSel.innerHTML='<option value="">全部区域</option>'+districts.map(d=>'<option value="'+d+'">'+d+'</option>').join('');
+  };
+  citySel.onchange();
+}
+
+// ===== HOME =====
 function renderHomeFeatured(){
   const list=document.getElementById('featuredList');
   list.innerHTML='';
   propData.slice(0,4).forEach(p=>{
     const div=document.createElement('div');
     div.className='card featured-card';
-    div.innerHTML='<div class="price">¥'+p.price+'<span>/月</span></div><div style="font-weight:600;margin-bottom:4px">'+p.name+'</div><div class="meta"><span>'+p.type+'</span><span>'+p.size+'㎡</span><span>🚇'+p.metro+'</span></div><div class="tag-row">'+p.tags.slice(0,3).map(t=>'<span class="t">'+t+'</span>').join('')+'</div>';
+    div.innerHTML='<img class="prop-img-sm" src="'+imgUrl(p.imgSeed,400,200)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'"><div class="fc-body"><div class="price">¥'+p.price+'<span>/月</span></div><div style="font-weight:600;margin-bottom:4px">'+p.name+'</div><div class="meta"><span>'+p.type+'</span><span>'+p.size+'㎡</span><span>'+p.city+p.district+'</span></div><div class="tag-row">'+p.tags.slice(0,3).map(t=>'<span class="t">'+t+'</span>').join('')+'</div></div>';
     div.onclick=()=>showDetail(p.id);
     list.appendChild(div);
   });
 }
 
-// ===== DETAIL page =====
+// ===== DETAIL =====
 function showDetail(propId){
   const p=propData.find(x=>x.id===propId);
   if(!p)return;
   const el=document.getElementById('detailContent');
   const html=''+
+'<div class="card" style="padding:0;overflow:hidden">'+
+'  <img class="prop-img-hero" src="'+imgUrl(p.imgSeed,800,400)+'" alt="'+p.name+'" loading="lazy" onerror="this.className=\'prop-img-placeholder\';this.outerHTML=\'<div class=\\\'prop-img-hero prop-img-placeholder\\\'>🏠</div>\'">'+
+'</div>'+
 '<div class="card detail-header">'+
 '  <div class="price-big">¥'+p.price+'<span>/月</span></div>'+
 '  <h3 style="margin:4px 0">'+p.name+'</h3>'+
-'  <div class="detail-meta"><span>'+p.type+'</span><span>'+p.size+'㎡</span><span>'+p.floor+'</span><span>🚇 '+p.metro+'</span></div>'+
+'  <div class="detail-meta"><span>📍 '+p.city+p.district+'</span><span>'+p.type+'</span><span>'+p.size+'㎡</span><span>🏢 '+p.floor+'</span></div>'+
+'  <div class="detail-meta"><span>🚇 '+p.metro+'</span><span>🏗️ '+p.buildYear+'年建</span></div>'+
 '  <div class="tag-row">'+p.tags.map(t=>'<span class="t">'+t+'</span>').join('')+'</div>'+
 '</div>'+
 '<div class="card">'+
-'  <div class="detail-section"><h4>📝 房源描述</h4><p style="font-size:14px;line-height:1.7;color:var(--t2)">'+p.desc+'</p></div>'+
+'  <div class="detail-section"><h4>📝 房源描述</h4><p style="font-size:14px;line-height:1.8;color:var(--t2)">'+p.desc+'</p></div>'+
 '  <div class="detail-section"><h4>🏠 配套设施</h4><div class="tag-row">'+p.amenities.map(a=>'<span class="t" style="background:#e3f5ed;color:var(--a2)">'+a+'</span>').join('')+'</div></div>'+
 '  <div class="detail-section"><h4>📞 联系方式</h4><span style="font-size:13px;color:var(--t2)">'+p.contact+'</span></div>'+
 '  <div class="detail-section"><h4>📊 来源平台</h4><span style="font-size:13px;color:var(--t2)">'+p.source+'</span></div>'+
 '  <div class="detail-actions">'+
 '    <button class="btn-outline" onclick="addToCompare(\''+p.id+'\')">⚖️ 加入对比</button>'+
-'    <button class="btn-primary" id="btnAiDetail" data-pid="'+p.id+'">🤖 AI分析</button>'+
+'    <button class="btn-primary" id="btnAiDetail">🤖 AI深度分析</button>'+
 '  </div>'+
 '  <div id="detailAnalysis" style="margin-top:10px"></div>'+
 '</div>';
   el.innerHTML=html;
-  document.getElementById('btnAiDetail').onclick=function(){
-    aiAnalyzeProp(p,'detailAnalysis');
-  };
+  document.getElementById('btnAiDetail').onclick=function(){aiAnalyzeProp(p,'detailAnalysis');};
   switchTab('detail');
 }
 
-function addToCompare(propId){
-  document.getElementById('compA').value=propId;
-  switchTab('compare');
-}
+function addToCompare(propId){document.getElementById('compA').value=propId;switchTab('compare');}
 
-// ===== CHAT with property linking =====
+// ===== CHAT =====
 let chatMsgs=[{role:'system',content:'你是 RentSmart AI 智能租房助手。推荐房源时请用「房源名」格式提到具体房源名称。帮助用户找房、分析房源、识别租房风险、提供法律建议。回答要具体实用，控制在200字以内。'}];
 
 function linkifyProps(text){
-  // Replace known property names with clickable spans
   let out=text;
-  propData.forEach(p=>{
-    const regex=new RegExp(p.name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g');
-    out=out.replace(regex,'<span class="prop-link" onclick="showDetail(\''+p.id+'\')">'+p.name+'</span>');
-  });
+  propData.forEach(p=>{const regex=new RegExp(p.name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g');out=out.replace(regex,'<span class="prop-link" onclick="showDetail(\''+p.id+'\')">'+p.name+'</span>');});
   return out;
 }
 
@@ -334,84 +346,63 @@ function addMsg(role,text){
   div.className='chat-msg '+role;
   div.innerHTML='<div class="av">'+(role==='assistant'?'🤖':'👤')+'</div><div class="bubble">'+(role==='assistant'?linkifyProps(text):text)+'</div>';
   document.getElementById('chat').appendChild(div);
-  const ca=document.getElementById('chat');
-  ca.scrollTop=ca.scrollHeight;
+  document.getElementById('chat').scrollTop=document.getElementById('chat').scrollHeight;
 }
 
 async function chatSend(){
-  const inp=document.getElementById('chatInp');
-  const text=inp.value.trim();
+  const inp=document.getElementById('chatInp'),text=inp.value.trim();
   if(!text)return;
-  addMsg('user',text);
-  chatMsgs.push({role:'user',content:text});
-  inp.value='';
-  document.getElementById('chatBtn').disabled=true;
-  show('chatLoading');
+  addMsg('user',text);chatMsgs.push({role:'user',content:text});
+  inp.value='';document.getElementById('chatBtn').disabled=true;show('chatLoading');
   try{
-    // Build context with property list
-    const ctxMessages=[
-      chatMsgs[0],
-      {role:'system',content:'当前可推荐房源：\n'+propData.map(p=>'「'+p.name+'」¥'+p.price+'/月 '+p.size+'㎡ '+p.type+' '+p.district+'区 '+p.metro+' 标签：'+p.tags.join('、')).join('\n')},
-      ...chatMsgs.slice(-8)
-    ];
-    const reply=await ai(ctxMessages);
-    hide('chatLoading');
-    addMsg('assistant',reply);
-    chatMsgs.push({role:'assistant',content:reply});
-  }catch(e){
-    hide('chatLoading');
-    addMsg('assistant','网络错误，请重试。');
-  }
-  document.getElementById('chatBtn').disabled=false;
-  inp.focus();
+    const ctx=[chatMsgs[0],{role:'system',content:'当前可推荐房源（12套）：\n'+propData.map(p=>'「'+p.name+'」¥'+p.price+'/月 '+p.size+'㎡ '+p.city+p.district+' 标签：'+p.tags.join('、')).join('\n')},...chatMsgs.slice(-8)];
+    const reply=await ai(ctx);
+    hide('chatLoading');addMsg('assistant',reply);chatMsgs.push({role:'assistant',content:reply});
+  }catch(e){hide('chatLoading');addMsg('assistant','网络错误，请重试。');}
+  document.getElementById('chatBtn').disabled=false;inp.focus();
 }
-
-addMsg('assistant','你好！我是 RentSmart AI 🤖\n\n由 DeepSeek 驱动，可以帮你：\n🔍 分析房源——推荐最适合你的房子\n💡 提及房源时可直接点击查看详情\n🛡️ 识别合同陷阱和风险\n⚖️ 比较价格和隐藏成本\n📜 解答租房法律问题\n\n💬 试试问我"南山3000以内有什么推荐"');
+addMsg('assistant','你好！我是 RentSmart AI 🤖\n\n由 DeepSeek 驱动，有12套精选房源：\n🏙️ 深圳6套 · 北京2套 · 上海2套\n🏙️ 广州1套 · 杭州1套\n\n💬 问我"南山3000以内"推荐\n🔍 去"找房"看全部带图房源\n⚖️ 用"对比"PK两套房');
 
 // ===== SEARCH =====
 function searchProps(){
+  const city=document.getElementById('city').value;
   const district=document.getElementById('district').value;
   const budget=parseInt(document.getElementById('budget').value)||999999;
   const res=document.getElementById('searchResults');
-  let filtered=propData.filter(p=>(!district||p.district===district)&&p.price<=budget);
+  let filtered=propData.filter(p=>(!city||p.city===city)&&(!district||p.district===district)&&p.price<=budget);
   res.innerHTML='';
-  if(!filtered.length){res.innerHTML='<div class="card" style="text-align:center;color:var(--t3)">暂无匹配房源，试试扩大搜索范围</div>';return;}
+  if(!filtered.length){res.innerHTML='<div class="card" style="text-align:center;color:var(--t3);padding:30px">暂无匹配房源<br><span style="font-size:12px">试试扩大搜索范围</span></div>';return;}
+  res.innerHTML='<div style="font-size:12px;color:var(--t3);padding:4px 14px">找到 '+filtered.length+' 套房源</div>';
   filtered.forEach(p=>{
     const div=document.createElement('div');
     div.className='card listing';
-    div.innerHTML='<div class="price">¥'+p.price+'<span>/月</span></div><div style="font-weight:600;margin-bottom:4px">'+p.name+'</div><div class="meta"><span>'+p.type+'</span><span>'+p.size+'㎡</span><span>'+p.floor+'</span><span>🚇'+p.metro+'</span></div><div class="tag-row">'+p.tags.map(t=>'<span class="t">'+t+'</span>').join('')+'</div><div style="margin-top:6px;font-size:12px;color:var(--accent);font-weight:600">点击查看详情 →</div>';
+    div.innerHTML='<img class="prop-img" src="'+imgUrl(p.imgSeed,400,250)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'"><div class="lc-body"><div class="price">¥'+p.price+'<span>/月</span></div><div style="font-weight:600;margin-bottom:4px">'+p.name+'</div><div class="meta"><span>📍 '+p.city+p.district+'</span><span>'+p.type+'</span><span>'+p.size+'㎡</span></div><div class="meta"><span>🚇 '+p.metro+'</span><span>🏗️ '+p.buildYear+'年</span></div><div class="tag-row">'+p.tags.map(t=>'<span class="t">'+t+'</span>').join('')+'</div><div class="view-hint">点击查看详情 →</div></div>';
     div.onclick=()=>showDetail(p.id);
     res.appendChild(div);
   });
 }
 
-async function aiAnalyzeProp(p,containerId='searchResults'){
+async function aiAnalyzeProp(p,containerId){
   const res=document.getElementById(containerId);
   const tip=document.createElement('div');
-  tip.className='card';
-  tip.style.background='#e3f5ed';
-  tip.innerHTML='<div class="loading" style="padding:0"><span></span><span></span><span></span></div><span style="color:var(--a2);font-size:12px">AI分析中…</span>';
+  tip.className='ai-tip';
+  tip.innerHTML='<div class="loading" style="padding:0"><span></span><span></span><span></span></div> AI分析中…';
   res.prepend(tip);
   try{
     const reply=await ai([
-      {role:'system',content:'你是租房专家。根据房源信息简短分析：优点、缺点、适合人群、议价建议。控制在150字以内。'},
-      {role:'user',content:'分析：'+p.name+'，'+p.district+'区，¥'+p.price+'/月，'+p.size+'㎡，'+p.type+'，'+p.floor+'，'+p.metro+'，特点：'+p.tags.join('、')+'\n描述：'+p.desc}
+      {role:'system',content:'你是租房专家。根据房源信息给出分析：优点、缺点、适合人群、议价建议。控制在150字以内。'},
+      {role:'user',content:'分析：'+p.name+'，'+p.city+p.district+'，¥'+p.price+'/月，'+p.size+'㎡，'+p.type+'，'+p.metro+'，'+p.buildYear+'年建\n特点：'+p.tags.join('、')+'\n描述：'+p.desc}
     ]);
-    tip.innerHTML='<div class="ai-tip">🤖 <b>AI分析：</b>'+linkifyProps(reply)+'</div>';
-  }catch(e){tip.innerHTML='<div class="ai-tip">⚠️ AI请求失败，请重试</div>';}
+    tip.innerHTML='🤖 <b>AI分析：</b>'+linkifyProps(reply);
+  }catch(e){tip.innerHTML='⚠️ AI请求失败，请重试';}
 }
 
 // ===== COMPARE =====
 function initCompare(){
   const a=document.getElementById('compA'),b=document.getElementById('compB');
-  a.innerHTML='<option value="">-- 房源A --</option>';
-  b.innerHTML='<option value="">-- 房源B --</option>';
-  propData.forEach(p=>{
-    const o1=document.createElement('option');o1.value=p.id;o1.textContent=p.name+' ¥'+p.price;a.appendChild(o1);
-    const o2=document.createElement('option');o2.value=p.id;o2.textContent=p.name+' ¥'+p.price;b.appendChild(o2);
-  });
+  a.innerHTML='<option value="">-- 房源A --</option>';b.innerHTML='<option value="">-- 房源B --</option>';
+  propData.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent='['+p.city+'] '+p.name+' ¥'+p.price;a.appendChild(o.cloneNode(true));b.appendChild(o);});
 }
-
 async function compareProps(){
   const aid=document.getElementById('compA').value,bid=document.getElementById('compB').value;
   if(!aid||!bid)return alert('请选择两个房源');
@@ -420,17 +411,15 @@ async function compareProps(){
   show('compLoading');
   const res=document.getElementById('compResult');
   res.innerHTML='<div class="card"><table class="compare-table"><tr><th>对比项</th><th><span class="prop-link" onclick="showDetail(\''+pa.id+'\')">'+pa.name+'</span></th><th><span class="prop-link" onclick="showDetail(\''+pb.id+'\')">'+pb.name+'</span></th></tr>'+
-    [{k:'价格',va:'¥'+pa.price,va2:'/月',vb:'¥'+pb.price,vb2:'/月',hl:pa.price<pb.price},
-     {k:'面积',va:pa.size+'㎡',va2:'',vb:pb.size+'㎡',vb2:'',hl:pa.size>pb.size},
-     {k:'类型',va:pa.type,va2:'',vb:pb.type,vb2:'',hl:false},
-     {k:'楼层',va:pa.floor,va2:'',vb:pb.floor,vb2:'',hl:false},
-     {k:'地铁',va:pa.metro,va2:'',vb:pb.metro,vb2:'',hl:false},
-     {k:'区域',va:pa.district,va2:'',vb:pb.district,vb2:'',hl:false}]
+    [{k:'价格',va:'¥'+pa.price+'/月',vb:'¥'+pb.price+'/月',hl:pa.price<pb.price},
+     {k:'面积',va:pa.size+'㎡',vb:pb.size+'㎡',hl:pa.size>pb.size},{k:'城市区域',va:pa.city+pa.district,vb:pb.city+pb.district,hl:false},
+     {k:'类型',va:pa.type,vb:pb.type,hl:false},{k:'楼层',va:pa.floor,vb:pb.floor,hl:false},
+     {k:'地铁',va:pa.metro,vb:pb.metro,hl:false},{k:'建成年份',va:pa.buildYear+'年',vb:pb.buildYear+'年',hl:pa.buildYear>pb.buildYear}]
     .map(r=>'<tr'+(r.hl?' class="highlight"':'')+'><td>'+r.k+'</td><td>'+r.va+'</td><td>'+r.vb+'</td></tr>').join('')+'</table></div>';
   try{
     const analysis=await ai([
-      {role:'system',content:'你是租房对比专家。对比两个房源，给出哪个更推荐及理由，控制在120字，用数据说话。提及房源时用「房源名」格式。'},
-      {role:'user',content:'A：「'+pa.name+'」¥'+pa.price+' '+pa.size+'㎡ '+pa.district+' '+pa.metro+' 标签：'+pa.tags.join('/')+'\nB：「'+pb.name+'」¥'+pb.price+' '+pb.size+'㎡ '+pb.district+' '+pb.metro+' 标签：'+pb.tags.join('/')}
+      {role:'system',content:'你是租房对比专家。对比两个房源给出推荐及理由，控制在120字，用数据说话。'},
+      {role:'user',content:'A：「'+pa.name+'」¥'+pa.price+' '+pa.size+'㎡ '+pa.city+pa.district+' '+pa.metro+'\nB：「'+pb.name+'」¥'+pb.price+' '+pb.size+'㎡ '+pb.city+pb.district+' '+pb.metro}
     ]);
     hide('compLoading');
     res.innerHTML+='<div class="card" style="background:#e3f5ed;margin-top:0;border-radius:0 0 14px 14px"><b>🤖 AI分析：</b>'+linkifyProps(analysis)+'</div>';
@@ -438,88 +427,44 @@ async function compareProps(){
 }
 
 // ===== LEGAL =====
-const legalQAs=[
-  {q:'押金不退怎么办？',a:null},{q:'房东可以随便涨房租吗？',a:null},
-  {q:'提前退租违约金怎么算？',a:null},{q:'二房东转租合法吗？',a:null},
-  {q:'租房合同需要备案吗？',a:null},
-];
+const legalQAs=[{q:'押金不退怎么办？',a:null},{q:'房东可以随便涨房租吗？',a:null},{q:'提前退租违约金怎么算？',a:null},{q:'二房东转租合法吗？',a:null},{q:'租房合同需要备案吗？',a:null}];
 function initLegal(){
   const list=document.getElementById('legalQAList');
-  legalQAs.forEach((qa,i)=>{
+  legalQAs.forEach(qa=>{
     const div=document.createElement('div');div.className='qa-item';
     div.innerHTML='<div class="q">📌 '+qa.q+'</div><div class="a"></div>';
     div.onclick=async function(){
       if(this.classList.contains('open')){this.classList.remove('open');return;}
       if(qa.a){this.querySelector('.a').textContent=qa.a;this.classList.add('open');return;}
-      this.querySelector('.a').textContent='⏳ AI解答中…';
-      this.classList.add('open');
-      try{
-        const reply=await ai([
-          {role:'system',content:'你是中国租房法律专家，熟悉《民法典》租赁合同章节。回答：1.引用法条 2.实操建议 3.200字以内。'},
-          {role:'user',content:qa.q}
-        ]);
-        qa.a=reply;this.querySelector('.a').textContent=reply;
-      }catch(e){this.querySelector('.a').textContent='⚠️ 请求失败';}
-    };
-    list.appendChild(div);
+      this.querySelector('.a').textContent='⏳ AI解答中…';this.classList.add('open');
+      try{const r=await ai([{role:'system',content:'你是中国租房法律专家，熟悉《民法典》租赁合同章节。回答：引用法条+实操建议，200字以内。'},{role:'user',content:qa.q}]);qa.a=r;this.querySelector('.a').textContent=r;}
+      catch(e){this.querySelector('.a').textContent='⚠️ 请求失败';}
+    };list.appendChild(div);
   });
 }
-
 async function legalAsk(){
-  const inp=document.getElementById('legalInp'),q=inp.value.trim();
-  if(!q)return;
+  const inp=document.getElementById('legalInp'),q=inp.value.trim();if(!q)return;
   show('legalLoading');inp.value='';document.getElementById('legalBtn').disabled=true;
-  try{
-    const reply=await ai([
-      {role:'system',content:'你是中国租房法律专家，熟悉《民法典》租赁合同章节。回答：1.引用法条 2.实操建议 3.200字以内。'},
-      {role:'user',content:q}
-    ]);
-    hide('legalLoading');document.getElementById('legalBtn').disabled=false;
-    document.getElementById('legalAnswer').innerHTML='<div class="card" style="background:#e3f5ed"><b>🤖 问题：</b>'+q+'<br><br><b>💡 建议：</b>'+reply+'</div>';
-  }catch(e){hide('legalLoading');document.getElementById('legalBtn').disabled=false;}
+  try{const r=await ai([{role:'system',content:'你是中国租房法律专家。引用法条+实操建议，200字以内。'},{role:'user',content:q}]);hide('legalLoading');document.getElementById('legalBtn').disabled=false;document.getElementById('legalAnswer').innerHTML='<div class="card" style="background:#e3f5ed"><b>🤖 问题：</b>'+q+'<br><br><b>💡 建议：</b>'+r+'</div>';}
+  catch(e){hide('legalLoading');document.getElementById('legalBtn').disabled=false;}
 }
 
 // ===== RISK =====
-const riskChecks=[
-  {id:'r1',label:'房东未出示房产证/身份证',level:'high'},
-  {id:'r2',label:'要求现金支付或私下转账',level:'high'},
-  {id:'r3',label:'合同条款模糊/有空白处',level:'high'},
-  {id:'r4',label:'押金超过两个月租金',level:'med'},
-  {id:'r5',label:'房东拒绝提供发票/收据',level:'med'},
-  {id:'r6',label:'看房时发现房屋有明显损坏',level:'med'},
-  {id:'r7',label:'要求签合同前先交定金',level:'med'},
-  {id:'r8',label:'小区/楼栋治安环境较差',level:'low'},
-  {id:'r9',label:'水电费单价不明确',level:'low'},
-  {id:'r10',label:'合租室友信息不透明',level:'low'},
-];
+const riskChecks=[{id:'r1',label:'房东未出示房产证/身份证',level:'high'},{id:'r2',label:'要求现金支付或私下转账',level:'high'},{id:'r3',label:'合同条款模糊/有空白处',level:'high'},{id:'r4',label:'押金超过两个月租金',level:'med'},{id:'r5',label:'房东拒绝提供发票/收据',level:'med'},{id:'r6',label:'看房时发现房屋有明显损坏',level:'med'},{id:'r7',label:'要求签合同前先交定金',level:'med'},{id:'r8',label:'小区/楼栋治安环境较差',level:'low'},{id:'r9',label:'水电费单价不明确',level:'low'},{id:'r10',label:'合租室友信息不透明',level:'low'}];
 function initRisk(){
   const container=document.getElementById('riskChecks');
-  riskChecks.forEach(r=>{
-    const div=document.createElement('div');div.className='risk-item';
-    div.innerHTML='<div class="check" id="check_'+r.id+'"></div><span class="label">'+r.label+'</span><span class="risk-lvl '+r.level+'">'+({high:'高危',med:'注意',low:'提醒'})[r.level]+'</span>';
-    div.onclick=()=>document.getElementById('check_'+r.id).classList.toggle('checked');
-    container.appendChild(div);
-  });
+  riskChecks.forEach(r=>{const div=document.createElement('div');div.className='risk-item';div.innerHTML='<div class="check" id="check_'+r.id+'"></div><span class="label">'+r.label+'</span><span class="risk-lvl '+r.level+'">'+({high:'高危',med:'注意',low:'提醒'})[r.level]+'</span>';div.onclick=()=>document.getElementById('check_'+r.id).classList.toggle('checked');container.appendChild(div);});
 }
-
 async function riskAnalyze(){
   const checked=riskChecks.filter(r=>document.getElementById('check_'+r.id).classList.contains('checked'));
   if(!checked.length)return alert('请至少勾选一项风险');
-  show('riskLoading');
-  const highCount=checked.filter(r=>r.level==='high').length;
-  const summary='勾选了'+checked.length+'项风险（高危'+highCount+'项）';
-  try{
-    const reply=await ai([
-      {role:'system',content:'你是租房风险分析师。评估风险等级（安全/注意/危险），给应对建议。200字以内。'},
-      {role:'user',content:'风险情况：'+summary+'\n具体：'+checked.map(r=>r.label).join('；')+'\n请评估风险等级并给出应对建议。'}
-    ]);
-    hide('riskLoading');
-    document.getElementById('riskResult').innerHTML='<div class="card risk-result"><b>📊 '+summary+'</b><br><br><b>🤖 AI评估：</b>'+reply+'</div>';
-  }catch(e){hide('riskLoading');document.getElementById('riskResult').innerHTML='<div class="card" style="color:var(--red)">⚠️ AI请求失败</div>';}
+  show('riskLoading');const hc=checked.filter(r=>r.level==='high').length,s='勾选'+checked.length+'项（高危'+hc+'项）';
+  try{const r=await ai([{role:'system',content:'你是租房风险分析师。评估风险等级（安全/注意/危险），给应对建议。200字。'},{role:'user',content:s+'\n'+checked.map(r=>r.label).join('；')}]);hide('riskLoading');document.getElementById('riskResult').innerHTML='<div class="card risk-result"><b>📊 '+s+'</b><br><br><b>🤖 AI评估：</b>'+r+'</div>';}
+  catch(e){hide('riskLoading');}
 }
 
-// ===== Init =====
-initCompare();initLegal();initRisk();searchProps();renderHomeFeatured();
+// ===== INIT =====
+initFilters();initCompare();initLegal();initRisk();searchProps();renderHomeFeatured();
 </script>
 </body>
 </html>
