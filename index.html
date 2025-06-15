@@ -643,7 +643,7 @@ function renderFeatured(props){
   const list=document.getElementById('featuredList');
   list.innerHTML=props.map(p=>
     '<div class="featured-card" onclick="showDetail(\''+p.id+'\')">'+
-    '<img class="fc-img" src="'+imgUrl(p.imgSeed,300,150)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\\'none\\'">'+
+    '<img class="fc-img" src="'+imgUrl(p.imgSeed,300,150)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'">'+
     '<div class="fc-body"><div class="fc-price">¥'+p.price+'<span>/月</span></div>'+
     '<div class="fc-name">'+p.name+'</div>'+
     '<div class="fc-meta"><span>'+p.city+p.district+'</span><span>'+p.size+'㎡</span></div></div></div>'
@@ -658,7 +658,7 @@ function showDetail(propId){
   const el=document.getElementById('detailContent');
   const html=''+
 '<div class="card" style="padding:0;overflow:hidden">'+
-'  <img class="prop-img-hero" src="'+imgUrl(p.imgSeed,800,400)+'" alt="'+p.name+'" loading="lazy" onerror="this.className=\'prop-img-placeholder\';this.outerHTML=\'<div class=\\\'prop-img-hero prop-img-placeholder\\\'>🏠</div>\'">'+
+'  <img class="prop-img-hero" src="'+imgUrl(p.imgSeed,800,400)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'">'+
 '</div>'+
 '<div class="card detail-header">'+
 '  <div class="price-big">¥'+p.price+'<span>/月</span></div>'+
@@ -722,7 +722,7 @@ function renderPropCards(props,containerId){
   res.innerHTML='<div style="font-size:12px;color:var(--t3);padding:4px 14px">找到 '+props.length+' 套房源</div>';
   res.innerHTML+=props.map(p=>
     '<div class="card listing" onclick="showDetail(\''+p.id+'\')">'+
-    '<img class="prop-img" src="'+imgUrl(p.imgSeed,400,250)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'">'+
+    '<img class="prop-img" src="'+imgUrl(p.imgSeed,400,250)+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'">
     '<div class="lc-body"><div class="price">¥'+p.price+'<span>/月</span></div>'+
     '<div style="font-weight:600;margin-bottom:4px">'+p.name+'</div>'+
     '<div class="meta"><span>📍 '+p.city+p.district+'</span><span>'+p.type+'</span><span>'+p.size+'㎡</span></div>'+
